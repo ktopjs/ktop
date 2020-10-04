@@ -9,6 +9,7 @@ class UsersController extends ApplicationController {
     this.get('/:id', this.show.bind(this))
     this.post('/', this.create.bind(this))
     this.put('/:id', this.update.bind(this))
+    this.delete('/:id', this.destroy.bind(this))
   }
   async index (ctx, next) {
     ctx.body = await this.User.all()
@@ -24,6 +25,12 @@ class UsersController extends ApplicationController {
   async show (ctx, next) {
     const user = await this.User.findById(ctx.params.id)
     ctx.body = user
+  }
+  async destroy(ctx, next) {
+    const beforeCount = await this.User.count()
+    await this.User.destroy({id: ctx.params.id})
+    const afterCount = await this.User.count()
+    ctx.body = {beforeCount, afterCount}
   }
   async hello (ctx, next) {
     ctx.body = 'hello world'

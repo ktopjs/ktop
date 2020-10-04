@@ -35,6 +35,10 @@ class KTopModel extends bookshelf.Model {
     options = Object.assign({ patch: true, require: true }, options)
     return new this(findAttrs).save(updateAttrs, options)
   }
+  static destroy (findAttrs, options) {
+    options = Object.assign({ require: true }, options)
+    return new this(findAttrs).destroy(options)
+  }
 
   constructor() {
     super(...arguments)

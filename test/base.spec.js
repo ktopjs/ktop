@@ -8,6 +8,7 @@ describe('base test', () => {
   // shelljs.exec(`ktop db:migrate -f ./test/example/config/database.config.js`)
   // shelljs.exec(`ktop db:seed -f ./test/example/config/database.config.js`)
 
+  shelljs.exec('npm link')
   shelljs.exec(`rm -f ${ path.resolve(__dirname, '../config/data.test.sqlite') }`)
   shelljs.exec('npm link @ktopjs/ktop')
   shelljs.exec(`ktop db:migrate`)
@@ -53,5 +54,10 @@ describe('base test', () => {
   it('get usersCount',  async () => {
     const res = await request.get('/api/v1/users/usersCount').expect(200)
     expect(res.body.beforeCount).toBe(res.body.afterCount - 1)
+  })
+
+  it('delete user',  async () => {
+    const res = await request.delete('/api/v1/users/3').expect(200)
+    expect(res.body.beforeCount).toBe(res.body.afterCount + 1)
   })
 })
