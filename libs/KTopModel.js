@@ -21,6 +21,12 @@ class KTopModel extends bookshelf.Model {
   static findById (id) {
     return this.find({ [this.prototype.idAttribute]: id }, { require: false })
   }
+  static findOrCreateBy(attrs, options) {
+    options = Object.assign({ require: false }, options)
+    return this.find(attrs, options).then(model => {
+      return model || this.create(attrs, options)
+    })
+  }
   static create (creatAttrs, options) {
     options = Object.assign({method: 'insert'}, options)
     return new this(creatAttrs).save(null, options)

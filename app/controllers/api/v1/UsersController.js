@@ -32,7 +32,12 @@ class UsersController extends ApplicationController {
     // await this.User.count() === await ctx.app.models.User.count()
     // http://knexjs.org/
     // https://bookshelfjs.org/api.html
-    ctx.body = await this.User.count()
+    const beforeCount = await this.User.count()
+    await this.User.findOrCreateBy({mobile: '12300000000'})
+    await this.User.findOrCreateBy({mobile: '12300000000'})
+    const afterCount = await this.User.count()
+    ctx.body = {beforeCount, afterCount}
+
   }
 }
 module.exports = UsersController

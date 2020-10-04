@@ -3,7 +3,7 @@ const supertest = require('supertest')
 const shelljs = require('shelljs')
 
 describe('base test', () => {
-  // process.env.CUSTOM_KTOP_PROJECT_PATH = path.resolve(__dirname, 'example')
+  // process.env.CUSTOM_KTOP_PROJECT_PATH = path.resolve(__dirname, '../')
   // shelljs.exec('ktop new test/example')
   // shelljs.exec(`ktop db:migrate -f ./test/example/config/database.config.js`)
   // shelljs.exec(`ktop db:seed -f ./test/example/config/database.config.js`)
@@ -48,5 +48,10 @@ describe('base test', () => {
   it('get user',  async () => {
     const res = await request.get('/api/v1/users/3').expect(200)
     expect(res.body.mobile).toBe('10000000001')
+  })
+
+  it('get usersCount',  async () => {
+    const res = await request.get('/api/v1/users/usersCount').expect(200)
+    expect(res.body.beforeCount).toBe(res.body.afterCount - 1)
   })
 })
