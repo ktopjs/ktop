@@ -2,7 +2,7 @@ const requireDirectory = require('require-directory')
 const KoaRouter = require('koa-router')
 const path = require('path')
 
-class Model {
+class ModelLoader {
   constructor () {
     this.app = null
   }
@@ -32,4 +32,4 @@ class Model {
   }
 }
 
-module.exports = Model
+module.exports = ModelLoader

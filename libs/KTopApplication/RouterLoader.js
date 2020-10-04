@@ -1,7 +1,7 @@
 const path = require('path')
 const requireDirectory = require('require-directory')
 const _ = require('lodash')
-class Router {
+class RouterLoader {
   constructor () {
     this.app = null
   }
@@ -36,4 +36,4 @@ class Router {
     })
   }
 }
-module.exports = Router
+module.exports = RouterLoader

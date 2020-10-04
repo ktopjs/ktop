@@ -1,6 +1,6 @@
 const requireDirectory = require('require-directory')
 const path = require('path')
-class AutoMiddleware {
+class AutoMiddlewareLoader {
   constructor () {
     this.app = null
   }
@@ -25,4 +25,4 @@ class AutoMiddleware {
     })
   }
 }
-module.exports = AutoMiddleware
+module.exports = AutoMiddlewareLoader

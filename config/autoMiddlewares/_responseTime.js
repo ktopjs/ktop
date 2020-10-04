@@ -1,4 +1,4 @@
-module.exports = async function responseTime(ctx, next) {
+module.exports = async (ctx, next) => {
   let start = Date.now()
   await next()
   let ms = Date.now() - start

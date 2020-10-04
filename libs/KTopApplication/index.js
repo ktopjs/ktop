@@ -1,8 +1,8 @@
 const path = require('path')
 const Koa = require('koa')
-const Model = require('./Model')
-const AutoMiddleware = require('./AutoMiddleware')
-const Router = require('./Router')
+const ModelLoader = require('./ModelLoader')
+const AutoMiddlewareLoader = require('./AutoMiddlewareLoader')
+const RouterLoader = require('./RouterLoader')
 class Application extends Koa {
   constructor() {
     super(...arguments)
@@ -12,9 +12,9 @@ class Application extends Koa {
     this.autoMiddlewaresPath = path.join(this.projectPath, 'config/autoMiddlewares')
     this.models = {}
 
-    this.use(Model)
-    this.use(AutoMiddleware)
-    this.use(Router)
+    this.use(ModelLoader)
+    this.use(AutoMiddlewareLoader)
+    this.use(RouterLoader)
   }
   use (plugin) {
     if (/object/.test(typeof plugin) && plugin['installTo']) { // isObject
@@ -22,7 +22,11 @@ class Application extends Koa {
     } else if (typeof plugin === 'function' && /^class\s/.test(Function.prototype.toString.call(plugin))) { // isClass
       this.use(new plugin())
     } else {
-      super.use(plugin.bind(this))
+      if (Array.isArray(plugin)) {
+        plugin.forEach(item => super.use(item.bind(this)))
+      } else {
+        super.use(plugin.bind(this))
+      }
     }
   }
 }

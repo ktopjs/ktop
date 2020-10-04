@@ -1,18 +1,21 @@
 {
   "name": "@ktopjs/ktop",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-alpha.4",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon start",
+    "dev": "NODE_ENV=development nodemon start.js",
     "test": "jest --coverage"
   },
   "dependencies": {
     "bookshelf": "^1.2.0",
+    "joi": "^17.2.1",
     "knex": "^0.21.6",
     "koa": "^2.13.0",
+    "koa-body": "^4.2.0",
     "koa-router": "^9.4.0",
     "lodash": "^4.17.20",
+    "lodash-inflection": "^1.5.0",
     "require-directory": "^2.1.1"
   },
   "devDependencies": {

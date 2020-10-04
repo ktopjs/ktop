@@ -6,7 +6,6 @@ exports.seed = function(knex) {
       return knex('users').insert([
         {id: 1, mobile: '12312312311'},
         {id: 2, mobile: '12312312312'},
-        {id: 3, mobile: '12312312313'}
       ]);
     });
 };
