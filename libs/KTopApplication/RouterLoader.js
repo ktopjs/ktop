@@ -12,7 +12,7 @@ class RouterLoader {
   }
   check (fullPath){
     const basename = path.basename(fullPath)
-    if (/^(\.|(Application|Base)Controller\.js).*/i.test(basename)){
+    if (/^(\..*|ApplicationController|BaseController)/i.test(basename)){
       return false; // don't include
     } else {
       return true; // go ahead and include

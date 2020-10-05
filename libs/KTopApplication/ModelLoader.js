@@ -13,7 +13,7 @@ class ModelLoader {
   }
   check (fullPath){
     const basename = path.basename(fullPath)
-    if (/^(\.|ApplicationRecord\.js)/i.test(basename)){
+    if (/^(\.|ApplicationRecord\.)/i.test(basename)){
       return false; // don't include
     } else {
       return true; // go ahead and include
@@ -21,13 +21,19 @@ class ModelLoader {
   }
   register(Models) {
     /object/.test(typeof Models) && Object.keys(Models).forEach((key) => {
-      const modelConfigClassName = Models[key].name
-      this.app.models[modelConfigClassName] = Models[key]
-      Object.defineProperty(KoaRouter.prototype, modelConfigClassName, {
-        get () {
-          return Models[key]
-        }
-      })
+      let Model = Models[key]
+      // Model isClass
+      if (typeof Model === 'function' && /^class\s/.test(Function.prototype.toString.call(Model))) {
+        const modelConfigClassName = Models[key].name
+        this.app.models[modelConfigClassName] = Models[key]
+        Object.defineProperty(KoaRouter.prototype, modelConfigClassName, {
+          get () {
+            return Models[key]
+          }
+        })
+      } else {
+        this.register(Models[key])
+      }
     })
   }
 }
