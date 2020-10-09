@@ -1,6 +1,7 @@
 const path = require('path')
 const base = {
   client: 'sqlite3',
+  useNullAsDefault: true,
   migrations: {
     directory: '../db/migrate',
     tableName: 'migrations'
@@ -15,22 +16,20 @@ const config = {
     connection: {
       filename: path.join(__dirname, 'data.development.sqlite')
     },
-    useNullAsDefault: true,
     debug: true
   },
   production: {
     ...base,
     connection: {
       filename: path.join(__dirname, 'data.production.sqlite')
-    },
-    useNullAsDefault: true
+    }
   },
   test: {
     ...base,
     connection: {
       filename: path.join(__dirname, 'data.test.sqlite')
-    },
-    useNullAsDefault: true
+    }
+    // connection: ":memory:"
   }
 }
 module.exports = config
