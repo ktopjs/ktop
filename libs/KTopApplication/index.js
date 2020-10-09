@@ -11,6 +11,7 @@ class Application extends Koa {
     this.controllersPath = path.join(this.projectPath, 'app/controllers')
     this.autoMiddlewaresPath = path.join(this.projectPath, 'config/autoMiddlewares')
     this.models = {}
+    this.routers = []
 
     this.use(ModelLoader)
     this.use(AutoMiddlewareLoader)

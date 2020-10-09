@@ -26,6 +26,7 @@ class RouterLoader {
         let routeName = Router.name
         let router = new Router({prefix: [...paths, _.camelCase(routeName).replace(/Controller$/, '')].join('/')})
         if (/Controller$/.test(routeName)) {
+          this.app.routers.push(router)
           this.app.use(router.routes())
           this.app.use(router.allowedMethods())
         }
