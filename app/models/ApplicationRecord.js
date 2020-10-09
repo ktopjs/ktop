@@ -1,4 +1,4 @@
-const { KTopModel } = require('@ktopjs/ktop')
+const { KTopModel } = require('ktop')
 class ApplicationRecord extends KTopModel {
   constructor() {
     super(...arguments)

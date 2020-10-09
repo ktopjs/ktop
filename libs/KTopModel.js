@@ -2,9 +2,9 @@ const path = require('path')
 const Joi = require('joi')
 const _ = require('lodash')
 _.mixin(require('lodash-inflection'))
-const projectPath = process.env.CUSTOM_KTOP_PROJECT_PATH || process.cwd()
+const projectPath = process.env.GLOBAL_DEFINE_KTOP_PROJECT_PATH || process.cwd()
 const knexConfig = require(path.join(projectPath, 'config/database.config.js'))
-const knex = require('knex')(knexConfig[process.env.NODE_ENV || 'development'])
+const knex = require('knex')(knexConfig[process.env.NODE_ENV])
 const bookshelf = require('bookshelf')(knex)
 
 const mapTableName = {}

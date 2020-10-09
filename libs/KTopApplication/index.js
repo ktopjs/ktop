@@ -6,7 +6,7 @@ const RouterLoader = require('./RouterLoader')
 class Application extends Koa {
   constructor() {
     super(...arguments)
-    this.projectPath = process.env.CUSTOM_KTOP_PROJECT_PATH || process.cwd()
+    this.projectPath = process.env.GLOBAL_DEFINE_KTOP_PROJECT_PATH || process.cwd()
     this.modelsPath = path.join(this.projectPath, 'app/models')
     this.controllersPath = path.join(this.projectPath, 'app/controllers')
     this.autoMiddlewaresPath = path.join(this.projectPath, 'config/autoMiddlewares')

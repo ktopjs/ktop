@@ -10,7 +10,7 @@ describe('base test', () => {
 
   shelljs.exec('npm link')
   shelljs.exec(`rm -f ${ path.resolve(__dirname, '../config/data.test.sqlite') }`)
-  shelljs.exec('npm link @ktopjs/ktop')
+  shelljs.exec('npm link ktop')
   shelljs.exec(`ktop db:migrate`)
   shelljs.exec(`ktop db:seed`)
   const application = require('../config/application')

@@ -2,14 +2,14 @@
 
 ### Quick Start
 
-use [vue-cli](https://github.com/ktopjs/ktop-cli) for command line
+use [ktop-cli](https://github.com/ktopjs/ktop-cli) for command line
 
 ```bash
-npm i @ktopjs/ktop-cli -g
+npm i ktop-cli -g
 ktop new hello -d sqlite3
 cd hello && npm run dev
 ```
-more info see [vue-cli](https://github.com/ktopjs/ktop-cli)
+more info see [ktop-cli](https://github.com/ktopjs/ktop-cli)
 
 ### controllers
 ktop will auto load controllers in `/app/controllers`  with namespace (without file name start with `.` `ApplicationController` `BaseController`)

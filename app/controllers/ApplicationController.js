@@ -1,4 +1,4 @@
-const { KTopController } = require('@ktopjs/ktop')
+const { KTopController } = require('ktop')
 class ApplicationController extends KTopController {
   constructor () {
     super(...arguments)
