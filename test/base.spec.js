@@ -11,7 +11,7 @@ describe('base test', () => {
   //   jest.useFakeTimers()
   // })
   beforeAll(() => {
-    shelljs.exec(`rm -f ${ path.resolve(__dirname, '../config/data.test.sqlite') }`)
+    shelljs.exec(`rm -f ${application.knex.client.config.connection.filename}`)
     shelljs.exec(`ktop db:migrate`)
     shelljs.exec(`ktop db:seed`)
   })

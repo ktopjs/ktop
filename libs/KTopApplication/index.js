@@ -10,6 +10,7 @@ class Application extends Koa {
     this.modelsPath = path.join(this.projectPath, 'app/models')
     this.controllersPath = path.join(this.projectPath, 'app/controllers')
     this.autoMiddlewaresPath = path.join(this.projectPath, 'config/autoMiddlewares')
+    this.knex = require('../KTopModel').knex
     this.models = {}
     this.routers = []
 

@@ -9,6 +9,8 @@ const bookshelf = require('bookshelf')(knex)
 
 const mapTableName = {}
 class KTopModel extends bookshelf.Model {
+  static get knex () { return knex }
+
   static all(filterAttrs, options) {
     return this.forge().where(Object.assign({}, filterAttrs)).fetchAll(options)
   }
