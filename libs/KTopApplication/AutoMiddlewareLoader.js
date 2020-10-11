@@ -6,13 +6,14 @@ class AutoMiddlewareLoader {
   }
   installTo (app) {
     this.app = app
-    const middleWares = requireDirectory(module, app.autoMiddlewaresPath, {include: this.check, extensions: ['js']})
+    const middleWares = requireDirectory(module, app.autoMiddlewaresPath, {include: this.check.bind(this), extensions: ['js']})
     this.register(middleWares)
   }
   check (fullPath){
-    const basename = path.basename(fullPath)
-    // 不加载.开头的文件(隐藏文件)
-    if (/^\./i.test(basename)){
+    const subPath = fullPath.replace(this.app.autoMiddlewaresPath, '')
+    // const basename = path.basename(fullPath)
+    // 不加载.开头的文件或文件夹(隐藏文件)
+    if (/\/\.|\\\./i.test(subPath)){
       return false; // don't include
     } else {
       return true; // go ahead and include
