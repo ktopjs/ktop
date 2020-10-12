@@ -7,12 +7,13 @@ class RouterLoader {
   }
   installTo (app) {
     this.app = app
-    const Routers = requireDirectory(module, app.controllersPath, {include: this.check, extensions: ['js']})
+    const Routers = requireDirectory(module, app.controllersPath, {include: this.check.bind(this), extensions: ['js']})
     this.register(Routers)
   }
   check (fullPath){
+    const subPath = fullPath.replace(this.app.controllersPath, '')
     const basename = path.basename(fullPath)
-    if (/^(\..*|ApplicationController|BaseController)/i.test(basename)){
+    if (/\/\.|\\\./i.test(subPath) || /^(ApplicationController|BaseController)\./i.test(basename)){
       return false; // don't include
     } else {
       return true; // go ahead and include

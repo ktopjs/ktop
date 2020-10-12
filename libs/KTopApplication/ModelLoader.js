@@ -8,12 +8,13 @@ class ModelLoader {
   }
   installTo (app) {
     this.app = app
-    const Models = requireDirectory(module, app.modelsPath, {include: this.check, extensions: ['js']})
+    const Models = requireDirectory(module, app.modelsPath, {include: this.check.bind(this), extensions: ['js']})
     this.register(Models)
   }
   check (fullPath){
+    const subPath = fullPath.replace(this.app.modelsPath, '')
     const basename = path.basename(fullPath)
-    if (/^(\.|ApplicationRecord\.)/i.test(basename)){
+    if (/\/\.|\\\./i.test(subPath) || /^(ApplicationRecord)\./i.test(basename)){
       return false; // don't include
     } else {
       return true; // go ahead and include
