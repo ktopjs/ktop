@@ -1,5 +1,4 @@
 const requireDirectory = require('require-directory')
-const KoaRouter = require('koa-router')
 const path = require('path')
 
 class ModelLoader {
@@ -27,11 +26,6 @@ class ModelLoader {
       if (typeof Model === 'function' && /^class\s/.test(Function.prototype.toString.call(Model))) {
         const modelConfigClassName = Models[key].name
         this.app.models[modelConfigClassName] = Models[key]
-        Object.defineProperty(KoaRouter.prototype, modelConfigClassName, {
-          get () {
-            return Models[key]
-          }
-        })
       } else {
         this.register(Models[key])
       }

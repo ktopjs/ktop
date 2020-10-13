@@ -1,5 +1,6 @@
 const path = require('path')
 const requireDirectory = require('require-directory')
+const KoaRouter = require('koa-router')
 const _ = require('lodash')
 class RouterLoader {
   constructor () {
@@ -9,6 +10,14 @@ class RouterLoader {
     this.app = app
     const Routers = requireDirectory(module, app.controllersPath, {include: this.check.bind(this), extensions: ['js']})
     this.register(Routers)
+    // mount all models to base class prototype
+    Object.keys(app.models).forEach(key => {
+      Object.defineProperty(KoaRouter.prototype, key, {
+        get () {
+          return app.models[key]
+        }
+      })
+    })
   }
   check (fullPath){
     const subPath = fullPath.replace(this.app.controllersPath, '')
