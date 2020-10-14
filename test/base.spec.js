@@ -2,14 +2,14 @@ const path = require('path')
 const supertest = require('supertest')
 const shelljs = require('shelljs')
 
-describe('base test', () => {
+describe('api test', () => {
   const application = require('../config/application')
   const server = application.listen()
   const request = supertest.agent(server)
 
-  // beforeEach(() => {
-  //   jest.useFakeTimers()
-  // })
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
   beforeAll(() => {
     shelljs.exec(`rm -f ${application.knex.client.config.connection.filename}`)
     shelljs.exec(`ktop db:migrate`)

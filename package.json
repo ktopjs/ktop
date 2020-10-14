@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon start.js",
-    "test": "jest --coverage",
+    "test": "jest test/*.spec.js --coverage",
     "prepare": "require-self"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "koa-router": "^9.4.0",
     "lodash": "^4.17.20",
     "lodash-inflection": "^1.5.0",
+    "memory-cache": "^0.2.0",
     "node-schedule": "^1.3.2",
     "require-directory": "^2.1.1"
   },

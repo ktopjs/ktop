@@ -4,10 +4,12 @@ const ModelLoader = require('./ModelLoader')
 const JobLoader = require('./JobLoader')
 const AutoMiddlewareLoader = require('./AutoMiddlewareLoader')
 const RouterLoader = require('./RouterLoader')
+const KTopCache = require('../KTopCache')
 class Application extends Koa {
   constructor(config, ...otherOptions) {
     super(...otherOptions)
     this.config = config || {}
+    this.kTopCache = new KTopCache()
 
     this.projectPath = process.env.GLOBAL_DEFINE_KTOP_PROJECT_PATH || process.cwd()
     this.modelsPath = path.join(this.projectPath, 'app/models')
