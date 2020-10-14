@@ -12,13 +12,7 @@ class ModelLoader {
     const Jobs = requireDirectory(module, app.jobsPath, {include: this.check.bind(this), extensions: ['js']})
     this.register(Jobs)
     // mount all models to base class prototype
-    Object.keys(app.models).forEach(key => {
-      Object.defineProperty(KTopJob.prototype, key, {
-        get () {
-          return app.models[key]
-        }
-      })
-    })
+    app.shareAttrsTo(KTopJob.prototype)
   }
   check (fullPath){
     const subPath = fullPath.replace(this.app.jobsPath, '')

@@ -11,13 +11,7 @@ class RouterLoader {
     const Routers = requireDirectory(module, app.controllersPath, {include: this.check.bind(this), extensions: ['js']})
     this.register(Routers)
     // mount all models to base class prototype
-    Object.keys(app.models).forEach(key => {
-      Object.defineProperty(KoaRouter.prototype, key, {
-        get () {
-          return app.models[key]
-        }
-      })
-    })
+    app.shareAttrsTo(KoaRouter.prototype)
   }
   check (fullPath){
     const subPath = fullPath.replace(this.app.controllersPath, '')
