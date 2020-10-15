@@ -41,9 +41,13 @@ class Application extends Koa {
   }
   shareAttrsTo(obj) {
     const app = this
-    Object.defineProperty(obj, '$', { get () { return app } })
+    Object.defineProperty(obj, '$', {
+      configurable: false,
+      get () { return app }
+    })
     Object.keys(app.models).forEach(key => {
       Object.defineProperty(obj, key, {
+        configurable: false,
         get () {
           return app.models[key]
         }

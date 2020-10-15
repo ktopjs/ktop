@@ -12,7 +12,7 @@ describe('cache test', () => {
         // process.env.current = new Date().getTime()
         const interval = setInterval(() => {
           totalFetchCount++
-          application.kTopCache.fetch('hello', 1, async () => {
+          application.kTopCache.fetch('hello', { expiresIn: 1000 }, async () => {
             tmpAssignCount++
             // console.log('...', new Date().getTime() - process.env.current)
             return new Promise((resolve1, reject) => {
@@ -31,7 +31,8 @@ describe('cache test', () => {
     // expect(assignCount).toBeGreaterThanOrEqual(4)
     // expect(assignCount).toBeLessThanOrEqual(4)
     expect(totalFetchCount).toBeGreaterThanOrEqual(1000)
-    // 23 1136 2240 3343
-    expect(assignCount).toEqual(4)
+    // best: 0 1100 2200 3300
+    // actual: 23 1136 2240 3343
+    expect(assignCount).toBeLessThanOrEqual(4)
   })
 })

@@ -1,5 +1,5 @@
 # ktop
-
+supoort `node >= 10.0.0`
 ### Quick Start
 
 use [ktop-cli](https://github.com/ktopjs/ktop-cli) for command line
