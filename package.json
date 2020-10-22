@@ -1,6 +1,6 @@
 {
   "name": "ktop",
-  "version": "0.0.1-beta.3",
+  "version": "0.0.1-beta.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bookshelf": "^1.2.0",
+    "cls-hooked": "^4.2.2",
     "joi": "^17.2.1",
     "knex": "^0.21.6",
     "koa": "^2.13.0",

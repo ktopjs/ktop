@@ -23,7 +23,18 @@ class UsersController extends ApplicationController {
     ctx.body = user
   }
   async show (ctx, next) {
-    const user = await this.User.findById(ctx.params.id)
+    // query direct
+    const tmpUser = await this.User.find(ctx.params.id)
+
+    // query with transaction
+    // const user = await this.User.transaction(async () => {
+    //   return await this.User.find(ctx.params.id)
+    // })
+
+    // query withLock
+    const user = await tmpUser.withLock(async () => {
+      return await this.User.find(ctx.params.id)
+    })
     ctx.body = user
   }
   async destroy(ctx, next) {
