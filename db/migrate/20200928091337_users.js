@@ -7,7 +7,7 @@ exports.up = function(knex) {
       table.string('mobile', 11).notNullable()
       // http://knexjs.org/#Schema-enum
       table.enum('gender', ['male', 'female'])
-      table.text('decription').nullable()
+      table.text('description').nullable()
       // timestamps
       table.timestamps()
 

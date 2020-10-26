@@ -1,8 +1,9 @@
 const Joi = require('joi')
 const KTopBookShelf = require('./KTopBookshelf')
 class KTopModelBase extends KTopBookShelf {
-  static new(attrs) {
-    return new this(attrs)
+  static new(attrs, options) {
+    return this.forge(attrs, options)
+    // return new this(attrs)
   }
   static all(whereAttrs, options) {
     options = Object.assign({}, options)
@@ -63,6 +64,9 @@ class KTopModelBase extends KTopBookShelf {
     })
     this.on('saved', async (model) => {
       model.afterSave && await model.afterSave()
+    })
+    this.on('destroying', async (model) => {
+      model.beforeDestroy && await model.beforeDestroy()
     })
     this.on('destroyed', async (model) => {
       model.afterDestroy && await model.afterDestroy()

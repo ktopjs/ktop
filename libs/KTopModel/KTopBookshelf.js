@@ -8,7 +8,7 @@ const bookshelf = require('bookshelf')(knex)
 
 const mapTableName = {}
 // https://github.com/jeff-lewis/cls-hooked
-const clsHookedNamespace = require('cls-hooked').createNamespace(`__KTopBaseModel`)
+const clsHookedNamespace = require('cls-hooked').createNamespace(`__KTopBookshelf`)
 
 class BaseModel extends bookshelf.Model {
   static get knex () { return knex }
